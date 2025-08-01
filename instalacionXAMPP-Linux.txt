@@ -1,0 +1,91 @@
+PROCESO DE INSTALACION DE XAMPP EN LINUX (UBUNTU) Y EJECUCION EN LOCAL DE ESTE PROYECTO:
+
+1.- Descargar XAMPP desde su sitio oficial
+    - https://www.apachefriends.org/es/download.html
+    - Selecciona la version adecuada y descargará un archivo con la extension .run
+
+2.- Asigna permisos de ejecucion al archivo descargado
+    - chmod +x xampp-linux-x64-8.x.x-0-installer.run
+
+3.- Ejecuta el instalador
+    - sudo ./xampp-linux-x64-8.x.x-0-installer.run
+
+4.- Inicia xampp:
+    - sudo /opt/lampp/manager-linux-x64.run
+    - Por defecto usa el puerto 3306. tuve que cambiarlo al puerto 3307 para que iniciara el servicio de MySQL Database
+
+5.- Reiniciar xampp:
+    - Si fuera necesario reiniciar el servidor escribir: sudo /opt/lampp/lampp restart
+
+6.- Opcionalmente será necesario importar la base de datos desde otro servidor
+    - Si es posible exportar toda la base de datos. Yo en mi caso no pude hacerlo y exporté la única tabla que tenia
+    - Si pude exportar la base de datos la importo al completo en el phpmyadmin destino
+    - Yo tuve que crear la base de datos con el mismo nombre e importar la tabla
+
+7.- Acceder a este proyecto una vez iniciado los servidores:
+    - http://localhost/php_crud_mysql
+
+8.- Configuracion de xampp para que la carpeta que aloje los proyectos de php no sea la docs, que trae por defecto, y cambiarla
+    - La nueva carpeta que contendrá los proyectos será /home/oscar/servosoftOnline.github.io/tutoriales/php
+
+    Pasos a seguir:
+
+    1.- Editar el archivo /opt/lampp/etc/httpd.conf
+
+    2.- Cambiando el contenido de la lineas:
+
+        DocumentRoot "/opt/lampp/htdocs"
+        <Directory "/opt/lampp/htdocs">
+
+        Por:
+
+        DocumentRoot "/home/oscar/servosoftOnline.github.io/tutoriales/php"
+        <Directory "/home/oscar/servosoftOnline.github.io/tutoriales/php">
+
+    3.- Asegúrate de ajustar los permisos y opciones dentro del bloque <Directory> que queden así:
+
+        <Directory "/ruta/a/tu/carpeta/tutoriales/php">
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+        </Directory>
+
+    4.- Asignarle permisos adecuados a la nueva carpeta:
+        - sudo chmod -R 755 /home/oscar/servosoftOnline.github.io/tutoriales/php
+        - sudo chown -R $USER:www-data /home/oscar/servosoftOnline.github.io/tutoriales/php
+    
+    5.- Asignarles permisos adecuados en las carpetas superiores:
+        - sudo chmod 755 /home/oscar
+        - sudo chmod 755 /home/oscar/servosoftOnline.github.io
+
+    5.- Reiniciar apache
+
+    6.- Probarlo accediendo de nuevo a: http://localhost/php_crud_mysql
+
+9.- Opcional crear un archivo.desktop que permitirá desde aplicaciones ejecutar el comando que inicia xampp
+
+    - El comando que debo ejecutar es: sudo /opt/lampp/manager-linux-x64.run. Pero no pudo usar sudo en archivos.desktop
+        - Debo solucionarlo usando pkexec que muestra entornos gráficos
+    - El archivo .desktop y el comando debo ponerlo en archivos diferentes. Para ejecutar el comando usaré un archivo.sh    
+        - Ambos archivos los debo crear en la carpeta /home/oscar/.local/share/applications/lanzaXAMPP
+    
+    - Uso el editor de texto de UBUNTU llamado nano para crear y editar los archivos
+
+    - Descripción de ambos archivos:
+
+        - lanzaXAMPP.desktop con la configuracion del archivo:
+            [Desktop Entry]
+            Version=1.0
+            Name=LanzaXAMPP
+            Comment=Acceso directo a lanzaXAMPP
+            Exec=/home/oscar/.local/share/applications/lanzaXAMPP/lanzaXAMPP.sh
+            Icon=/usr/share/icons/hicolor/48x48/apps/apport.png
+            Terminal=true
+            Type=Application
+            Categories=Utility;Application;
+
+        - lanzaXAMPP.sh con el comando a ejecutar:
+            #!/bin/bash
+            pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY /opt/lampp/manager-linux-x64.run
+
+

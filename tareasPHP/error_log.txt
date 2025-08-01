@@ -1,0 +1,54 @@
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa
+DB Host: 
+DB User: 
+DB Password: 
+DB Name: 
+El archivo db.php se está ejecutando
+Conexión exitosa

@@ -1,0 +1,30 @@
+
+# Este archivo define los servicios web y db que se ejecutarán en contenedores Docker.
+
+version: '3.8'
+
+services:
+  web:
+    build:
+
+      # Directorio de contexto para la construccion
+      context: ./tutoriales/php/tareasPHP
+
+      # Ruta al archivo Dockerfile
+      dockerfile: ./tutoriales/php/tareasPHP/backend/Dockerfile
+
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: stratocaster
+      MYSQL_DATABASE: tareas_crud
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

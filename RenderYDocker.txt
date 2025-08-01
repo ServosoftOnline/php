@@ -1,0 +1,42 @@
+Este archivo describe como paso las aplicaciones php a la fase desarrollo:
+
+    - He aplicado lo descrito al proyecto tareasPHP
+    - Opté por usar render. Pude acceder mediante la cuenta que tengo en github
+        - Cree un web service llamado tareasPHP
+        - En settings de tareasPHP configuro el web service y las variables de entorno
+        - Estas variables de entono me permite cambiar los valores de mis variables de entorno locales
+        - Las variables de entorno locales las tengo configurada en .env en el directorio raiz
+
+    - Render no tiene un environmet php, por lo que use docker
+    - Docker me permite subir un servidor apache y un servidor mysqli
+
+        - Para ello debo configurar los siguientes archivos:
+
+            - Dockerfile en la carpeta backend
+                - Contiene la configuracion del servicio apache que estará en render
+
+            - .render.yaml en el directorio raiz del proyecto
+                - Contiene la configuración del servicio apache junto con Dockerfile
+
+            - docker-compose.yml en el directorio raiz
+                - Contiene la configuracion del servicio mysql que estará en render
+
+    - Para realizar los deploy actualizo en github los cambios de la aplicacion
+      y hago otro deploy desde render
+
+    - Cambiar el password de acceso a la base de datos MySQL 
+
+        - Por defecto es un espacio en blanco
+        - Accedo a una terminal y me desplazo hasta el directorio /opt/lamp/bin
+        - Ejecuto el comando sudo mysql -u DocumentRoot
+        - Con esto accedo a la consola de mysql de xampp
+        - Este comando cambia el password a stratocaster ALTER USER 'root'@'localhost' IDENTIFIED BY 'stratocaster';
+        - con FLUSH PRIVILEGES; aplico los cambios
+        - con exit, salgo de la consola
+    
+    - Evitar que suba a github el archivo .env
+        - Este archivo contiene las variables de entorno
+        - Se deben tener unas variables de entorno descritas en .env
+            - Estas serviran principalmente para conectarse a la base de datos en produccion
+        - Estas no se subiran a github
+        - En render debo tener mis propias variables de entorno

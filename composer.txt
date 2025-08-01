@@ -1,0 +1,17 @@
+Composer:
+
+Definición:
+    - Gestor de dependencias para PHP. Seria el equivalente al gestor de dependiencias npm para node.js
+
+Instalacion:
+
+    -   curl -sS https://getcomposer.org/installer | php
+        sudo mv composer.phar /usr/local/bin/composer
+
+    -   Navegar hasta la carpeta raiz del proyecto e instalar vlucas/phpdotenv para poder cargar variables de entorno en php
+        Ejecutar: composer require vlucas/phpdotenv
+        Se creará una carpeta llamada vendor
+
+    - Ya puedo acceder a las variables de entorno definidas en .env
+
+    
